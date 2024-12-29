@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Device - Cisco Switch Manager{% endblock %}
+{% block header %}Add New Device{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            Please correct the errors below.
+        </div>
+        {% endif %}
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div>
+                <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Device Name
+                </label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.name.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- IP Address -->
+            <div>
+                <label for="{{ form.ip_address.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    IP Address
+                </label>
+                {{ form.ip_address }}
+                {% if form.ip_address.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.ip_address.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Device Type -->
+            <div>
+                <label for="{{ form.device_type.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Device Type
+                </label>
+                {{ form.device_type }}
+                {% if form.device_type.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.device_type.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Location -->
+            <div>
+                <label for="{{ form.location.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Location
+                </label>
+                {{ form.location }}
+                {% if form.location.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.location.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Username -->
+            <div>
+                <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Username
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Password
+                </label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Enable Password -->
+            <div>
+                <label for="{{ form.enable_password.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    Enable Password (optional)
+                </label>
+                {{ form.enable_password }}
+                <p class="text-gray-500 text-xs mt-1">{{ form.enable_password.help_text }}</p>
+                {% if form.enable_password.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.enable_password.errors.0 }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+            <button type="submit" name="test_connection" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                Test Connection
+            </button>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Add Device
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Network Topology - Cisco Switch Manager{% endblock %}
+{% block header %}Network Topology{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <!-- Topology Visualization Container -->
+    <div class="bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Network Topology Map</h3>
+        </div>
+        <div class="p-6">
+            <div id="topology-container" class="h-[600px] bg-gray-50 rounded-lg">
+                <!-- Topology visualization will be rendered here -->
+                <p class="text-center text-gray-500 pt-8">
+                    Topology visualization coming soon...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device List -->
+    <div class="bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Connected Devices</h3>
+        </div>
+        <div class="p-6">
+            {% if devices %}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for device in devices %}
+                    <div class="border rounded p-4">
+                        <h4 class="font-medium">{{ device.name }}</h4>
+                        <p class="text-sm text-gray-500">{{ device.ip_address }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-gray-500">No devices configured yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
